@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import store from './redux/store';
+import User from './components/users/users.component';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+
+          {/**
+           * 1.) All Switchable routes will be inside the switch
+           * 2.) Navbar or header should be outside the switch as it will always exist in every page.
+           */}
+          <Switch>
+            <Route exact path="/" component={User}/>
+          </Switch>
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
